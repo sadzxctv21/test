@@ -1,11 +1,42 @@
-<script type ="text/javascript">
- function WriteToFile(passForm) {
 
-    set fso = CreateObject("Scripting.FileSystemObject");  
-    set s = fso.CreateTextFile("test.txt", True);
-    s.writeline(document.passForm.input1.value);
-    s.writeline(document.passForm.input2.value);
-    s.writeline(document.passForm.input3.value);
-    s.Close();
- }
-  </script>
+
+<table> 
+    
+    <tr> 
+        <td width="60%">
+        <form method="post">
+            <input type="text" name="msg">
+            <input type="submit" name="test" id="test" value="RUN" /><br/>
+        </form>
+        </td width="40%">
+		
+		<td>
+		    <img  id="image" src="temp.png" onload="refreshIt(this)" width="100%">
+            </meta>
+		</td>
+    </tr> 
+	
+</table> 
+
+
+<script language="JavaScript">
+            function refreshIt(element) {
+                setTimeout(function() {
+                    element.src = element.src.split('?')[0] + '?' + new Date().getTime();
+                    refreshIt(element);
+                }, 2000); // refresh every 50ms
+            }
+</script>
+
+<?php
+
+function testfun()
+{
+   echo "您送出的訊息為：". $_POST['msg'];
+   
+}
+
+if(array_key_exists('test',$_POST)){
+   testfun();
+}
+?>
